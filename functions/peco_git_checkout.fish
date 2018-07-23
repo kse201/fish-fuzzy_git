@@ -1,4 +1,4 @@
-function peco_git_branch
+function peco_git_checkout
     set -l query  (commandline)
     if test -n $query
         set peco_flags --query "$query"
