@@ -1,7 +1,7 @@
 function peco_git_grep
     set -l query $argv
 
-    git grep --line-number "$query" | peco --prompt "GIT GREP>" --query $query | head -1 | read select_line
+    git grep --line-number "$query" | peco --prompt "GIT GREP>" --query "$query " | head -1 | read select_line
 
     if [ $select_line ]
         set select_file (echo $select_line | awk -F':' '{print $1}')
