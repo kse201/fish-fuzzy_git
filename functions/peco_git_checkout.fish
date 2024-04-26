@@ -1,10 +1,10 @@
-function peco_git_checkout
+function fuzzy_git_checkout
     set -l query  (commandline)
     if test -n $query
-        set peco_flags --query "$query"
+        set query --query "$query"
     end
 
-    git show-branch -a --list | peco --prompt "GIT BRANCH>" $peco_flags | head -1 | sed -e 's/^..\[\(.*\)\].*$/\1/g' | read branch
+    git show-branch -a --list | fzf --prompt "GIT BRANCH> " $query | head -1 | sed -e 's/^..\[\(.*\)\].*$/\1/g' | read branch
 
     if [ $branch ]
         echo $branch | grep 'remotes' >/dev/null 2>&1
@@ -16,4 +16,3 @@ function peco_git_checkout
         end
     end
 end
-
